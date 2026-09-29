@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALYE LUMA — Inventory Modules</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-mark"><span class="dot"></span><span>KALYE LUMA CASHIER SYSTEM</span></div>
+    <h1>KALYE LUMA</h1>
+    <div class="sub">Sign in to open the register.</div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginUser">Username</label>
+        <input type="text" id="loginUser" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="loginPass">Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="loginPass" autocomplete="current-password" required>
+          <button type="button" class="pw-toggle" data-target="loginPass" aria-label="Show password">Show</button>
+        </div>
+      </div>
+      <button type="submit" class="btn block">Log in</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
+    <div class="login-hint">Demo account: <strong>admin</strong> / <strong>admin123</strong></div>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="dot"></span>
+      <div class="brand-text">Kalye Luma POS<small>CASHIER REGISTER SYSTEM</small></div>
+    </div>
+    <nav class="nav" id="navLinks">
+      <button class="nav-link active" data-view="inventory"><span class="ico">▥</span>Inventory</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="user-chip"><span class="avatar" id="userAvatar">A</span><span id="userLabel">—</span></div>
+      <button class="btn ghost small" style="width:100%;color:#EDE7D2;border-color:rgba(237,231,210,0.3);margin-bottom:8px;" id="resetDataBtn">Reset demo data</button>
+      <button class="btn ghost small" style="width:100%;color:#EDE7D2;border-color:rgba(237,231,210,0.3);" id="logoutBtn">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <section class="view active" id="view-inventory">
+      <div class="topbar">
+        <div><h2>Inventory</h2><div class="meta">Stock levels across food &amp; drinks and games.</div></div>
+      </div>
+      <div class="toolbar">
+        <div class="pill-tabs" id="invCatTabs">
+          <button class="pill-tab active" data-cat="all">All</button>
+          <button class="pill-tab" data-cat="food">Food &amp; Drinks</button>
+          <button class="pill-tab" data-cat="game">Board Games / Cards</button>
+          <button class="pill-tab" data-cat="low">Restock alerts</button>
+        </div>
+        <input type="text" id="invSearch" placeholder="Search…">
+      </div>
+      <div class="panel">
+        <div class="panel-body" style="padding:0;">
+          <table><thead><tr><th>Item</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th></th></tr></thead>
+          <tbody id="invTable"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="modal-backdrop" id="restockModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Add stock</h3><button class="modal-close" data-close="restockModal">×</button></div>
+    <div class="modal-body">
+      <div class="field"><label id="restockLabel">Item</label>
+        <input type="number" id="restockQty" min="1" value="10">
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn ghost" data-close="restockModal">Cancel</button>
+      <button class="btn" id="restockConfirmBtn">Add stock</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="removeStockModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Remove stock</h3><button class="modal-close" data-close="removeStockModal">×</button></div>
+    <div class="modal-body">
+      <div class="field"><label id="removeStockLabel">Item</label>
+        <input type="number" id="removeStockQty" min="1" value="1">
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn ghost" data-close="removeStockModal">Cancel</button>
+      <button class="btn danger" id="removeStockConfirmBtn">Remove stock</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/monitor.js"></script>
+<script src="js/add-stock.js"></script>
+<script src="js/remove-stock.js"></script>
+</body>
+</html>
